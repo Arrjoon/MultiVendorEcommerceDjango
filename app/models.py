@@ -64,7 +64,7 @@ class Section(models.Model):
 
 
 class Product(models.Model):
-    vendor_name = models.CharField(max_length=100, unique=True)
+    vendor_name = models.CharField(max_length=100)
     total_quantity = models.IntegerField()
     Availability = models.IntegerField()
     featured_image = models.CharField(max_length=100)
@@ -74,11 +74,12 @@ class Product(models.Model):
     tax = models.IntegerField(null=True)
     packing_cost = models.IntegerField(null=True)
     Product_Information = RichTextField()
-    model_name = models.CharField(max_length=100,)
+    model_name = models.CharField(max_length=100)
     Categories = models.ForeignKey(Category, on_delete=models.CASCADE)
     Tags = models.CharField(max_length=100)
     Description = RichTextField(blank=True)
-    section = models.ForeignKey(Section, on_delete=models.DO_NOTHING)
+    section = models.ForeignKey(
+        Section, on_delete=models.DO_NOTHING, blank=True)
     slug = models.SlugField(default='', max_length=500, null=True, blank=True)
 
     def __str__(self):

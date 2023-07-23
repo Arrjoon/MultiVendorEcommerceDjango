@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
         <fieldset>
-
             <!-- Form Name -->
             <legend class="mt-3">PRODUCTS</legend>
 
@@ -23,7 +23,7 @@
                         </ul>
                         {% endif %}
                         <small id="vendor-name-feedback" class="text-danger"></small>
-                        <!-- <small>{{ form.vendor_name.help_text }}</small> -->
+                        <small>{{ form.vendor_name.help_text }}</small>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -56,24 +56,42 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="available_quantity">TOTAL QUANTITY</label>
-                        <input id="available_quantity" name="available_quantity" placeholder="" class="form-control"
-                            required="false" type="text">
+                        {{ form.total_quantity }}
+                        {% if form.total_quantity.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.total_quantity.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="available_quantity">AVAILABLE QUANTITY</label>
-                        <input id="available_quantity" name="available_quantity" placeholder="" class="form-control"
-                            required="" type="text">
+                        {{ form.Availability }}
+                        {% if form.Availability.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.Availability.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="product_weight">PRODUCT PRICE</label>
-                        <input id="product_price" name="product_price" placeholder="PRODUCT PRICE" class="form-control"
-                            required="true" type="text">
+                        {{ form.price }}
+                        {% if form.price.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.price.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -84,24 +102,43 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="product_weight">DISCOUNT</label>
-                        <input id="product_price" name="product_price" placeholder="" class="form-control"
-                            required="true" type="text">
+                        {{ form.Discount }}
+                        {% if form.Discount.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.Discount.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="product_weight">TAX</label>
-                        <input id="product_price" name="product_price" placeholder="" class="form-control"
-                            required="true" type="text">
+                        {{ form.tax }}
+                        {% if form.tax.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.tax.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="product_weight">PACKING COST</label>
-                        <input id="product_price" name="product_price" placeholder="" class="form-control"
-                            required="true" type="text">
+                        {{ form.packing_cost }}
+                        {% if form.packing_cost.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.packing_cost.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -112,42 +149,74 @@
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="available_quantity">MODEL NAME</label>
-                        <input id="available_quantity" name="available_quantity" placeholder="" class="form-control"
-                            required="false" type="text">
+                        {{ form.model_name }}
+                        {% if form.model_name.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.model_name.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="available_quantity">SLUG</label>
-                        <input id="available_quantity" name="slug" placeholder="" class="form-control" required=""
-                            type="text">
+                        {{ form.slug }}
+                        {% if form.slug.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.slug.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <!-- Text input -->
                     <div class="form-group">
                         <label class="control-label" for="product_weight">TAG</label>
-                        <input id="product_price" name="tag" placeholder="" class="form-control" required="true"
-                            type="text">
+                        {{ form.Tags }}
+                        {% if form.Tags.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.Tags.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
 
             <!-- fifth row -->
             <div class="row mb-4">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <!-- Textarea -->
                     <div class="form-group">
                         <label class="control-label" for="product_description">PRODUCT INFORMATION</label>
-                        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                        {{ form.media.Product_Information }}
+                        {% if form.Product_Information.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.Product_Information.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <!-- File Button -->
                     <div class="form-group mt-4">
                         <label class="control-label" for="filebutton">FEATURED IMAGES</label>
-                        <input id="filebutton" name="filebutton" class="input-file" type="file" multiple>
+                        {{ form.featured_image }}
+                        {% if form.featured_image.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.featured_image.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -157,15 +226,30 @@
                 <div class="col-md-6">
                     <!-- Textarea -->
                     <div class="form-group">
-                        <label class="control-label" for="product_description">ADDITIONAL INFORMATION</label>
-                        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                        <label class="control-label" for="product_description">DISCRIPTION</label>
+                        {{ form.Description }}
+                        {% if form.Description.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.Description.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <!-- File Button -->
                     <div class="form-group mt-4">
-                        <label class="control-label" for="filebutton">Additional IMAGES</label>
-                        <input id="filebutton" name="filebutton" class="input-file" type="file" multiple>
+                        <label class="control-label" for="filebutton">SECTION</label>
+                        {{ form.section }}
+                        {% if form.section.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.section.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <!-- <input id="filebutton" name="filebutton" class="input-file" type="file" multiple> -->
                     </div>
                 </div>
             </div>
@@ -175,7 +259,8 @@
                 <div class="col-md-12">
                     <!-- Button -->
                     <div class="form-group">
-                        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
+                        <button type="submit" id="singlebutton" name="singlebutton"
+                            class="btn btn-primary">Button</button>
                     </div>
                 </div>
             </div>

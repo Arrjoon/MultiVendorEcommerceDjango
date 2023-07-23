@@ -23,8 +23,10 @@ def product(request):
 def Add_product(request):
     if request.method == 'POST':
         form = Add_Product_Form(request.POST)
+        print(form)
         if form.is_valid():
             form.save()
+            form = Add_Product_Form()
             # Redirect or do something else on successful form submission
     else:
         form = Add_Product_Form()
