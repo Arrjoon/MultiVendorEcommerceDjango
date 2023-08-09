@@ -1,0 +1,10 @@
+# Set all Python files to use LF (Unix-style) line endings and treat as text
+*.py text eol=lf
+
+# Set all text files to use LF line endings
+* text eol=lf
+
+# Treat specific binary files as binary (non-text) files
+*.jpg binary
+*.png binary
+*.pdf binary
