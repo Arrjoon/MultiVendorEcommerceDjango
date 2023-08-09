@@ -37,9 +37,13 @@ def Add_product(request):
     return render(request, 'vendor/addproduct.html', context)
 
 
-def check_vendor_name(request):
-    vendor_name = request.GET.get('vendor_name', None)
+def check_slug(request):
+    slug = request.GET.get('Slug', None)
     response_data = {
-        'exists': Product.objects.filter(vendor_name=vendor_name).exists()
+        'exists': Product.objects.filter(slug=slug).exists()
     }
     return JsonResponse(response_data)
+
+
+def vendor_login(request):
+    return render(request, 'vendor/vendor_login.html')

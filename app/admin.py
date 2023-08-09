@@ -17,6 +17,9 @@ class Product_Admin(admin.ModelAdmin):
     list_editable = ['Categories', 'section']
 
 
+admin.site.register(CustomUser)
+admin.site.register(Vendor)
+admin.site.register(Customer)
 admin.site.register(Section)
 admin.site.register(Product, Product_Admin)
 admin.site.register(Product_image)

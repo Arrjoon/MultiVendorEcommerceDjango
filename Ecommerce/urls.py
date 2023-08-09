@@ -46,6 +46,7 @@ urlpatterns = [
     path('cart/cart_clear/', views.cart_clear, name='cart_clear'),
 
     path('vendor/', include('vendor.urls')),
+    path('app/', include('app.urls')),
 
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@ from ckeditor.fields import CKEditorWidget
 
 class Add_Product_Form(forms.ModelForm):
     vendor_name = forms.CharField(
-        max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'id_vendor'}), required=True, help_text="Vendor name must be unique",)
+        max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'id_vendor'}), required=True, help_text="Vendor name must be same ",)
     total_quantity = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control'}))
     Categories = forms.ModelChoiceField(queryset=Category.objects.all(
@@ -29,7 +29,7 @@ class Add_Product_Form(forms.ModelForm):
             'Tags': forms.TextInput(attrs={'class': 'form-control'}),
             'Description': forms.Textarea(attrs={'class': 'form-control'}),
             'section': forms.Select(attrs={'class': 'form-control'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'id': 'id_slug'}),
         }
 
     def clean_vendor_name(self):

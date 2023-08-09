@@ -22,7 +22,7 @@
                             {% endfor %}
                         </ul>
                         {% endif %}
-                        <small id="vendor-name-feedback" class="text-danger"></small>
+
                         <small>{{ form.vendor_name.help_text }}</small>
                     </div>
                 </div>
@@ -171,6 +171,7 @@
                             {% endfor %}
                         </ul>
                         {% endif %}
+                        <small id="slug-name-feedback" class="text-danger"></small>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -269,20 +270,20 @@
     </form>
 </div>
 <script>
-    function checkVendorName() {
-        const vendorNameInput = document.getElementById('id_vendor');
-        const vendorName = vendorNameInput.value.trim();
+    function checkslugName() {
+        const slugInput = document.getElementById('id_slug');
+        const slugName = slugInput.value.trim();
 
         // Perform AJAX request
-        fetch(`../check-vendor-name/?vendor_name=${vendorName}`)
+        fetch(`../check_slug/?slug=${slugName}`)
             .then(response => response.json())
             .then(data => {
-                const feedbackElement = document.getElementById('vendor-name-feedback');
+                const feedbackElement = document.getElementById('slug-name-feedback');
                 if (data.exists) {
-                    feedbackElement.innerText = 'Vendor name already exists.';
+                    feedbackElement.innerText = 'Slug name already exists.';
                     feedbackElement.classList.add('text-danger');
                 } else {
-                    feedbackElement.innerText = '';
+                    feedbackElement.innerText = 'Checking to if any exist';
                     feedbackElement.classList.remove('text-danger');
                 }
             })
@@ -292,8 +293,8 @@
     }
 
     // Attach event listener to trigger the function on input change
-    const vendorNameInput = document.getElementById('id_vendor');
-    vendorNameInput.addEventListener('input', checkVendorName);
+    const slugInput = document.getElementById('id_slug');
+    slugNameInput.addEventListener('input', checkslugName);
 
     $(".filter-checkbox").on('click', function () {
         var filter_object = {};

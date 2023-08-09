@@ -2,8 +2,26 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class CustomUser(AbstractUser):
+    is_customer = models.BooleanField(default=False)
+    is_vendor = models.BooleanField(default=False)
+
+
+class Vendor(models.Model):
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=100, null=True)
+    age = models.CharField(max_length=100, null=True)
+
+
+class Customer(models.Model):
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=100)
+    age = models.CharField(max_length=100)
 
 
 class slider(models.Model):
