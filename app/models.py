@@ -20,8 +20,8 @@ class Vendor(models.Model):
 class Customer(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, primary_key=True)
-    name = models.CharField(max_length=100)
-    age = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=True)
+    age = models.CharField(max_length=100, null=True)
 
 
 class slider(models.Model):

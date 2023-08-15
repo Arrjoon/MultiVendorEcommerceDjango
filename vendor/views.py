@@ -46,4 +46,4 @@ def check_slug(request):
 
 
 def vendor_login(request):
-    return render(request, 'vendor/vendor_login.html')
+    return render(request, 'vendor/vendor_registerform.html')

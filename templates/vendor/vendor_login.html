@@ -4,35 +4,64 @@
 <link rel="stylesheet" href="{% static 'assets/css/vendor/vendor_login.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <input type="checkbox" id="check">
-    <div class="login form">
-        <header>Login</header>
-        <form action="#">
-            <input type="text" placeholder="Enter your email">
-            <input type="password" placeholder="Enter your password">
-            <a href="#">Forgot password?</a>
-            <input type="button" class="button" value="Login">
-        </form>
-        <div class="signup">
-            <span class="signup">Don't have an account?
-                <label for="check">Register</label>
-            </span>
-        </div>
-    </div>
-    <div class="registration form">
-        <header>Signup</header>
-        <form action="#">
-            <input type="text" placeholder="Enter your email">
-            <input type="password" placeholder="Create a password">
-            <input type="password" placeholder="Confirm your password">
-            <input type="button" class="button" value="Signup">
-        </form>
-        <div class="signup">
-            <span class="signup">Already have an account?
-                <label for="check">Login</label>
-            </span>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <form class="text-center border border-light p-5" action="#!">
+
+                        <p class="h4 mb-4">Sign in</p>
+
+                        <!-- Email -->
+                        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+                        <!-- Password -->
+                        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
+                            placeholder="Password">
+
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <!-- Remember me -->
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember
+                                        me</label>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- Forgot password -->
+                                <a href="">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <!-- Sign in button -->
+                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                        <!-- Register -->
+                        <p>Not a member?
+                            <a href="">Register</a>
+                        </p>
+
+                        <!-- Social login -->
+                        <p>or sign in with:</p>
+
+                        <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+                        <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+                        <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+                        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+<!-- Default form login -->
+
+<!-- Default form login -->
 {% endblock %}

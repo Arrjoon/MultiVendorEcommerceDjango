@@ -62,35 +62,83 @@
                 <div class="basic-login">
                     {% if messages %}
                     {% for message in messages %}
-                    {% if message.tags == 'success' %}
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ message }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {% endif %}
                     {% endfor %}
                     {% endif %}
+
                     <h5>Register</h5>
-                    <form action="./Register" method="post">
+                    <form action="" method="post">
                         {% csrf_token %}
                         <label for="username">Username or email address <span>*</span></label>
-                        <input id="username" type="text" name="username" placeholder="Enter Username">
-                        <label for="firstname">First Name <span>*</span></label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Enter Firstname">
-                        <label for="lastname">Last Name <span>*</span></label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Enter lastname">
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+
+                        <!-- <input id="username" type="text" name="username" placeholder="Enter Username"> -->
+                        <label for="firstname">Name <span>*</span></label>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.name.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <label for="age">Age <span>*</span></label>
+                        {{ form.age }}
+                        {% if form.age.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.age.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <!-- <input id="firstname" type="text" name="firstname" placeholder="Enter Firstname"> -->
                         <label for="email-id">Email Address <span>*</span></label>
-                        <input id="email-id" type="text" name="email" placeholder="Email address...">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <!-- <input id="email-id" type="text" name="email" placeholder="Email address..."> -->
                         <label for="userpass">Password <span>*</span></label>
-                        <input id="userpass" type="password" name="password" placeholder="Enter password...">
-                        <div class="login-action mb-10 fix">
-                            <p>Your personal data will be used to support your experience throughout this website, to
-                                manage access to your account, and for other purposes described in our <a
-                                    href="#">privacy policy</a>.</p>
-                        </div>
-                        <button type="submit" class="tp-in-btn w-100"> Register </button>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password1.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        <!-- <input id="userpass" type="password" name="password" placeholder="Enter password..."> -->
+                        <label for="userpass">Confirm Password <span>*</span></label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password2.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        <!-- <input id="userpass" type="password" name="password" placeholder="Enter password..."> -->
+
+                        <input type="submit" class="tp-in-btn w-100" value="Register">
                     </form>
                 </div>
             </div>
