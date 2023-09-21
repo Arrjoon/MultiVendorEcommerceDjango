@@ -17,45 +17,40 @@
                         <form class="text-center border border-light p-5" action="#!">
 
                             <p class="h4 mb-4">Sign up</p>
+                            {{form}}
 
                             <div class="row mb-4">
                                 <div class="col-md-6">
-                                    <!-- First name -->
+                                    <!-- User name -->
                                     <input type="text" id="defaultRegisterFormFirstName" class="form-control"
-                                        placeholder="First name">
+                                        placeholder="User name">
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Last name -->
                                     <input type="text" id="defaultRegisterFormLastName" class="form-control"
-                                        placeholder="Last name">
+                                        placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <!-- First name -->
+                                    <input type="text" id="defaultRegisterFormFirstName" class="form-control"
+                                        placeholder="Last Name">
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Last name -->
+                                    <input type="email" id="defaultRegisterFormLastName" class="form-control"
+                                        placeholder="E-mail">
                                 </div>
                             </div>
 
                             <!-- E-mail -->
-                            <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4"
-                                placeholder="E-mail">
+                            <input type="password" id="defaultRegisterFormEmail" class="form-control mb-4"
+                                placeholder="Password">
 
                             <!-- Password -->
                             <input type="password" id="defaultRegisterFormPassword" class="form-control"
-                                placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                                At least 8 characters and 1 digit
-                            </small>
-
-                            <!-- Phone number -->
-                            <input type="text" id="defaultRegisterPhonePassword" class="form-control"
-                                placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-                            <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                                Optional - for two step authentication
-                            </small>
-
-                            <!-- Newsletter -->
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
-                                <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our
-                                    newsletter</label>
-                            </div>
-
+                                placeholder="Confirm Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
                             <!-- Sign up button -->
                             <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
 
@@ -71,12 +66,13 @@
                             <hr>
 
                             <!-- Terms of service -->
-                            <p>By clicking
-                                <em>Sign up</em> you agree to our
-                                <a href="" target="_blank">terms of service</a>
+                            <p>
+                                <em>If your are already Register</em>
+                                <a href="{% url 'vendorlogin' %}" target="_blank">login</a>
 
                         </form>
                         <!-- Default form register -->
+
                     </div>
                 </div>
             </div>

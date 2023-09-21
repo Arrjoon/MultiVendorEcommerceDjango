@@ -1,67 +1,57 @@
-{% extends '../main1.html' %}
-{% load static %}
-{% block content1 %}
-<link rel="stylesheet" href="{% static 'assets/css/vendor/vendor_login.css' %}">
-{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Login</h5>
-                    <form class="text-center border border-light p-5" action="#!">
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
 
-                        <p class="h4 mb-4">Sign in</p>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Default form register -->
+                        <form class="text-center border border-light p-5" action="{% url 'vendorlogin' %}"
+                            method="post">
+                            {% csrf_token %}
 
-                        <!-- Email -->
-                        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                            <p class="h4 mb-4"> Vendor Login</p>
 
-                        <!-- Password -->
-                        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
-                            placeholder="Password">
+                            <!-- E-mail -->
+                            <input type="text" id="defaultRegisterFormEmail" name="username" class="form-control mb-4"
+                                placeholder="username">
 
-                        <div class="d-flex justify-content-around">
-                            <div>
-                                <!-- Remember me -->
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember
-                                        me</label>
-                                </div>
-                            </div>
-                            <div>
-                                <!-- Forgot password -->
-                                <a href="">Forgot password?</a>
-                            </div>
-                        </div>
+                            <!-- Password -->
+                            <input type="password" id="defaultRegisterFormPassword" name="password" class="form-control"
+                                placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
-                        <!-- Sign in button -->
-                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                            <!-- Phone number -->
+                            <br>
 
-                        <!-- Register -->
-                        <p>Not a member?
-                            <a href="">Register</a>
-                        </p>
 
-                        <!-- Social login -->
-                        <p>or sign in with:</p>
+                            <button class="btn btn-info my-4 btn-block" type="submit">Log in</button>
 
-                        <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-                        <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-                        <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-                        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+                            <!-- Social register -->
+                            <hr>
 
-                    </form>
+                            <!-- Terms of service -->
+                            <p>
+                                <em>If your are already Register</em>
+                                <a href="{% url 'vendor_signup' %}" target="_blank">Register</a>
+
+                        </form>
+                        <!-- Default form register -->
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Include Bootstrap JS and Popper.js for functionality (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-<!-- Default form login -->
-
-<!-- Default form login -->
-{% endblock %}
+</html>

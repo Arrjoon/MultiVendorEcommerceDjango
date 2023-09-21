@@ -39,9 +39,19 @@
             <div class="col-lg-6">
                 <div class="basic-login mb-50">
                     <h5>Login</h5>
-                    <form action="./login" method="post">
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Failure!</strong> {{message}}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <form action="{% url 'login' %}" method="post">
                         {% csrf_token %}
-                        <label for="name">Username or email address <span>*</span></label>
+                        <label for="name">Username or e
+                            mail address <span>*</span></label>
                         <input id="name" type="text" name="username" placeholder="Enter Username">
                         <label for="pass">Password <span>*</span></label>
                         <input id="pass" name="password" type="password" placeholder="Enter password...">
@@ -59,19 +69,19 @@
                 </div>
             </div>
             <div class="col-lg-6">
+                <h5>Register</h5>
                 <div class="basic-login">
                     {% if messages %}
                     {% for message in messages %}
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> {{message}}
                     </div>
                     {% endfor %}
                     {% endif %}
 
-                    <h5>Register</h5>
+
+
+
                     <form action="" method="post">
                         {% csrf_token %}
                         <label for="username">Username or email address <span>*</span></label>
@@ -89,17 +99,17 @@
                         <label for="firstname">Name <span>*</span></label>
                         {{ form.name }}
                         {% if form.name.errors %}
-                        <ul class="errorlist">
+                        <ul class="alert alert-success text-danger">
                             {% for error in form.name.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
                         </ul>
                         {% endif %}
-                        <label for="age">Age <span>*</span></label>
-                        {{ form.age }}
-                        {% if form.age.errors %}
-                        <ul class="errorlist">
-                            {% for error in form.age.errors %}
+                        <label for="age">address <span>*</span></label>
+                        {{ form.address }}
+                        {% if form.address.errors %}
+                        <ul class="alert alert-success text-danger">
+                            {% for error in form.address.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
                         </ul>
@@ -108,7 +118,7 @@
                         <label for="email-id">Email Address <span>*</span></label>
                         {{ form.email }}
                         {% if form.email.errors %}
-                        <ul class="errorlist">
+                        <ul class="alert alert-success text-danger">
                             {% for error in form.email.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
@@ -118,7 +128,7 @@
                         <label for="userpass">Password <span>*</span></label>
                         {{ form.password1 }}
                         {% if form.password1.errors %}
-                        <ul class="errorlist">
+                        <ul class="alert alert-success text-danger">
                             {% for error in form.password1.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
@@ -129,7 +139,7 @@
                         <label for="userpass">Confirm Password <span>*</span></label>
                         {{ form.password2 }}
                         {% if form.password2.errors %}
-                        <ul class="errorlist">
+                        <ul class="alert alert-success text-danger">
                             {% for error in form.password2.errors %}
                             <li>{{ error }}</li>
                             {% endfor %}
@@ -145,5 +155,11 @@
         </div>
     </div>
 </div>
+<script>
+    // Automatically close the success alert after 4 seconds
+    setTimeout(function () {
+        $("#success-alert").alert('close');
+    }, 8000); // 4000 milliseconds (4 seconds)
+</script>
 <!-- account-area-end -->
 {% endblock content %}

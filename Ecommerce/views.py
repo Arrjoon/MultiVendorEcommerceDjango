@@ -64,23 +64,6 @@ def MyAccount(request):
     return render(request, 'login/customerlogin.html')
 
 
-def Login(request):
-    if (request.method == 'POST'):
-        name = request.POST.get('username')
-        password = request.POST.get('password')
-        print(name)
-        print(password)
-        user = authenticate(request, username=name, password=password)
-        print(user)
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-        else:
-            messages.error(request, "User name and password not valid")
-
-    return render(request, 'login/customerlogin.html')
-
-
 @login_required(login_url='/account/my_account')
 def update(request):
     if request.method == 'POST':

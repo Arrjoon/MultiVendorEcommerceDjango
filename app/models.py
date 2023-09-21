@@ -15,13 +15,14 @@ class Vendor(models.Model):
         CustomUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=100, null=True)
     age = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
 
 
 class Customer(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=100, null=True)
-    age = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
 
 
 class slider(models.Model):
@@ -84,17 +85,17 @@ class Section(models.Model):
 class Product(models.Model):
     vendor_name = models.CharField(max_length=100)
     total_quantity = models.IntegerField()
-    Availability = models.IntegerField()
+    Availability = models.IntegerField(null=True)
     featured_image = models.CharField(max_length=100)
     product_name = models.CharField(max_length=100)
     price = models.IntegerField()
     Discount = models.IntegerField()
     tax = models.IntegerField(null=True)
     packing_cost = models.IntegerField(null=True)
-    Product_Information = RichTextField()
-    model_name = models.CharField(max_length=100)
+    Product_Information = RichTextField(null=True)
+    model_name = models.CharField(max_length=100, null=True)
     Categories = models.ForeignKey(Category, on_delete=models.CASCADE)
-    Tags = models.CharField(max_length=100)
+    Tags = models.CharField(max_length=100, null=True)
     Description = RichTextField(blank=True)
     section = models.ForeignKey(
         Section, on_delete=models.DO_NOTHING, blank=True)

@@ -29,7 +29,6 @@ urlpatterns = [
     path('product/<slug:slug>', views.Product_Details, name='product_detail'),
     path('404', views.ERROR, name='error'),
     # path('account/Register', views.MyAccount, name='account'),
-    path('account/login', views.Login, name='login'),
     path('update_account', views.update, name='update'),
     path('logout', views.custom_logout, name='logout'),
     path('product/filter/filter_data', views.filter_data, name="filter-data"),
