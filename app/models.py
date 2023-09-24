@@ -17,12 +17,18 @@ class Vendor(models.Model):
     age = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Customer(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class slider(models.Model):
@@ -141,3 +147,28 @@ class Additional_Information(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     specification = models.CharField(max_length=100)
     detail = RichTextField()
+
+
+class Order(models.Model):
+    ORDER_STATUS_CHOICES = (
+        ('processing', 'Processing'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    )
+    order_id = models.AutoField(primary_key=True)
+    customer_id = models.ForeignKey('Customer', on_delete=models.CASCADE)
+    order_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=50, choices=ORDER_STATUS_CHOICES, default='Processing')
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class OrderDetail(models.Model):
+    detail_id = models.AutoField(primary_key=True)
+    order = models.ForeignKey(
+        'Order', related_name='order_details', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)

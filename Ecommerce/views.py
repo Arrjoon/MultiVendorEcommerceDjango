@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from app.models import slider, baner_area, Main_Category, Product, Category
 from django.contrib.auth.models import User
@@ -8,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from cart.cart import Cart
+import requests
 
 
 def base(request):
@@ -19,11 +21,13 @@ def home(request):
     baner = baner_area.objects.all().order_by('-id')[0:3]
     main_category = Main_Category.objects.all().order_by('id')
     product = Product.objects.filter(section__name="TOP DEAL OF THE DAY")
+    product1 = Product.objects.filter(section__name="TOP SELL")
     context = {
         'obj': obj,
         'baner': baner,
         'main_category': main_category,
         'product': product,
+        'product1': product1,
     }
     print(product)
 
@@ -64,7 +68,7 @@ def MyAccount(request):
     return render(request, 'login/customerlogin.html')
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/vendor/customer_signup')
 def update(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -129,6 +133,7 @@ def filter_data(request):
     return JsonResponse({'data': t})
 
 
+@login_required(login_url='/vendor/customer_signup')
 def CART(request):
     cart = request.session.get('cart')
     print(cart)
@@ -147,7 +152,7 @@ def CART(request):
 # cart functionality added
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/customer_signup')
 def cart_add(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
@@ -155,7 +160,7 @@ def cart_add(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/my_account')
 def item_clear(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
@@ -163,7 +168,7 @@ def item_clear(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/customer_signup')
 def item_increment(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
@@ -171,7 +176,7 @@ def item_increment(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/customer_signup')
 def item_decrement(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
@@ -179,18 +184,19 @@ def item_decrement(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/customer_signup')
 def cart_clear(request):
     cart = Cart(request)
     cart.clear()
     return redirect("cart_detail")
 
 
-@login_required(login_url='/account/my_account')
+@login_required(login_url='/app/customer_signup')
 def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
 
 
+@login_required(login_url='/app/customer_signup')
 def Checkout(request):
     cart = request.session.get('cart')
 
@@ -214,3 +220,36 @@ def Checkout(request):
     print(context)
 
     return render(request, 'checkout/checkout.html', context)
+
+
+def verify_payment(request):
+    print(request.POST)
+    token = request.POST.get('payload[token]')
+    amount = request.POST.get('payload[amount]')
+    # product_id = data['product_identity']
+    # token = data['token']
+    # amount = data['amount']
+    url = "https://khalti.com/api/v2/payment/verify/"
+
+    payload = {
+        'token': token,
+        'amount': amount
+    }
+
+    headers = {
+        'Authorization': 'Key test_secret_key_0ebe9337a9924683b75ba7b679cbd18f'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    response_data = json.loads(response.text)
+    status_code = str(response.status_code)
+
+    if status_code == '4000':
+        response = JsonResponse(
+            {'status': 'false', 'message': response_data['detail']}, status=500)
+        return response
+    import pprint
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(response_data)
+    return JsonResponse(f"Payment Done !! With IDX.{response_data['user']['idx']}", safe=False)

@@ -46,6 +46,7 @@ urlpatterns = [
 
     path('vendor/', include('vendor.urls')),
     path('app/', include('app.urls')),
+    path('api/verify_payment', views.verify_payment, name="verify_payment"),
 
 ] + static(settings.MEDIA_URL,
            document_root=settings.MEDIA_ROOT)

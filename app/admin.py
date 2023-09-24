@@ -17,6 +17,11 @@ class Product_Admin(admin.ModelAdmin):
     list_editable = ['Categories', 'section']
 
 
+class Order_Admin(admin.ModelAdmin):
+    list_display = ['order_date', 'customer_id', 'status', 'total_amount']
+    list_editable = ['customer_id', 'status']
+
+
 admin.site.register(CustomUser)
 admin.site.register(Vendor)
 admin.site.register(Customer)
@@ -30,3 +35,6 @@ admin.site.register(baner_area)
 admin.site.register(Main_Category)
 admin.site.register(Category)
 admin.site.register(Sub_Category)
+
+admin.site.register(Order, Order_Admin)
+admin.site.register(OrderDetail)

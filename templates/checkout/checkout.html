@@ -4,7 +4,8 @@
 {% block content %}
 <main>
     <!-- page-banner-area-start -->
-    <div class="page-banner-area page-banner-height-2" data-background="assets/img/banner/page-banner-4.jpg">
+    <div class="page-banner-area page-banner-height-2"
+        data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -104,25 +105,21 @@
                                     <div class="country-select">
                                         <label>Country <span class="required">*</span></label>
                                         <select style="display: none;">
-                                            <option value="volvo">bangladesh</option>
-                                            <option value="saab">Algeria</option>
+                                            <option value="volvo">Nepal</option>
+                                            <option value="saab">india</option>
                                             <option value="mercedes">Afghanistan</option>
-                                            <option value="audi">Ghana</option>
-                                            <option value="audi2">Albania</option>
-                                            <option value="audi3">Bahrain</option>
-                                            <option value="audi4">Colombia</option>
-                                            <option value="audi5">Dominican Republic</option>
+                                            <option value="audi">China</option>
+                                            <option value="audi2">bangladesh</option>
+                                            <option value="audi3">Usa</option>
                                         </select>
-                                        <div class="nice-select" tabindex="0"><span class="current">bangladesh</span>
+                                        <div class="nice-select" tabindex="0"><span class="current">Nepal</span>
                                             <ul class="list">
-                                                <li data-value="volvo" class="option selected">bangladesh</li>
-                                                <li data-value="saab" class="option">Algeria</li>
+                                                <li data-value="volvo" class="option selected">Nepal</li>
+                                                <li data-value="saab" class="option">india</li>
                                                 <li data-value="mercedes" class="option">Afghanistan</li>
-                                                <li data-value="audi" class="option">Ghana</li>
-                                                <li data-value="audi2" class="option">Albania</li>
-                                                <li data-value="audi3" class="option">Bahrain</li>
-                                                <li data-value="audi4" class="option">Colombia</li>
-                                                <li data-value="audi5" class="option">Dominican Republic</li>
+                                                <li data-value="audi" class="option">China</li>
+                                                <li data-value="audi2" class="option">bangladesh</li>
+                                                <li data-value="audi3" class="option">Usa</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -212,26 +209,22 @@
                                             <div class="country-select">
                                                 <label>Country <span class="required">*</span></label>
                                                 <select style="display: none;">
-                                                    <option value="volvo">bangladesh</option>
-                                                    <option value="saab">Algeria</option>
+                                                    <option value="volvo">Nepal</option>
+                                                    <option value="saab">india</option>
                                                     <option value="mercedes">Afghanistan</option>
-                                                    <option value="audi">Ghana</option>
-                                                    <option value="audi2">Albania</option>
-                                                    <option value="audi3">Bahrain</option>
-                                                    <option value="audi4">Colombia</option>
-                                                    <option value="audi5">Dominican Republic</option>
+                                                    <option value="audi">China</option>
+                                                    <option value="audi2">bangladesh</option>
+                                                    <option value="audi3">Usa</option>
                                                 </select>
                                                 <div class="nice-select" tabindex="0"><span
                                                         class="current">bangladesh</span>
                                                     <ul class="list">
-                                                        <li data-value="volvo" class="option selected">bangladesh</li>
-                                                        <li data-value="saab" class="option">Algeria</li>
+                                                        <li data-value="volvo" class="option selected">Nepal</li>
+                                                        <li data-value="saab" class="option">india</li>
                                                         <li data-value="mercedes" class="option">Afghanistan</li>
-                                                        <li data-value="audi" class="option">Ghana</li>
-                                                        <li data-value="audi2" class="option">Albania</li>
-                                                        <li data-value="audi3" class="option">Bahrain</li>
-                                                        <li data-value="audi4" class="option">Colombia</li>
-                                                        <li data-value="audi5" class="option">Dominican Republic</li>
+                                                        <li data-value="audi" class="option">China</li>
+                                                        <li data-value="audi2" class="option">bangladesh</li>
+                                                        <li data-value="audi3" class="option">Usa</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -326,39 +319,17 @@
                                                     {{item.quantity}}</strong>
                                             </td>
                                             <td class="product-total">
-                                                <span class="amount">{% multiply item.price item.quantity %}</span>
+                                                <span class="amount">RS {% multiply item.price item.quantity %}</span>
                                             </td>
                                         </tr>
                                         {% endfor %}
 
                                     </tbody>
-                                    <tfoot>
-                                        <tr class="cart-subtotal">
-                                            <th>Cart Subtotal</th>
-                                            <td><span class="amount">$215.00</span></td>
-                                        </tr>
-                                        <tr class="shipping">
-                                            <th>Shipping</th>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <input type="radio" name="shipping">
-                                                        <label>
-                                                            Flat Rate: <span class="amount">$7.00</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <input type="radio" name="shipping">
-                                                        <label>Free Shipping:</label>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <th>Order Total</th>
-                                            <td><strong><span class="amount">$215.00</span></strong>
-                                            </td>
-                                        </tr>
+                                    <tr class="order-total">
+                                        <th>Order Total</th>
+                                        <td><strong><span class="amount">RS {{cart_total_amount}}</span></strong>
+                                        </td>
+                                    </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -372,44 +343,35 @@
                                                 Direct Bank Transfer
                                             </button>
                                         </h2>
-                                        <div id="bankOne" class="accordion-collapse collapse show"
-                                            aria-labelledby="checkoutOne" data-bs-parent="#checkoutAccordion">
-                                            <div class="accordion-body">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order ID as the payment reference. Your order won’t be shipped until
-                                                    the funds have cleared in our account.</p>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="paymentTwo">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#payment"
                                                 aria-expanded="false" aria-controls="payment">
-                                                Cheque Payment
+                                                Offline Payment
                                             </button>
                                         </h2>
                                         <div id="payment" class="accordion-collapse collapse"
                                             aria-labelledby="paymentTwo" data-bs-parent="#checkoutAccordion">
                                             <div class="accordion-body">
-                                                <p>Please send your cheque to Store Name, Store Street, Store Town,
-                                                    Store State / County, Store Postcode.</p>
+                                                <p>Please send your money with Delivery Person</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="paypalThree">
-                                            <button class="accordion-button collapsed" type="button"
+                                            <button id="payment-button" class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#paypal" aria-expanded="false"
                                                 aria-controls="paypal">
-                                                PayPal
+                                                Khalti
                                             </button>
                                         </h2>
                                         <div id="paypal" class="accordion-collapse collapse"
                                             aria-labelledby="paypalThree" data-bs-parent="#checkoutAccordion">
                                             <div class="accordion-body">
-                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
-                                                    PayPal account.</p>
+                                                <p>Pay with Khalti</p>
                                             </div>
                                         </div>
                                     </div>
@@ -474,6 +436,57 @@
         </div>
 
     </section>
+    <!-- cta-area-end -->
+    <script>
+        function verifyPayment(payload) {
+            $.ajax({
+                url: "{% url 'verify_payment' %}",
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}', // Include the CSRF token here
+                    payload: payload // Assuming 'payload' is your other data
+                },
+                dataType: 'json',
+                success: function (response) { alert(response) },
+                error: function (error) { alert(error.responseJSON['message']) }
+            });
+        }
+
+        var config = {
+            // replace the publicKey with yours
+            "publicKey": "test_public_key_9d78cb06065a4cd188be307f6763bd29",
+            "productIdentity": "1234567890",
+            "productName": "Dragon",
+            "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+            "paymentPreference": [
+                "KHALTI",
+                "EBANKING",
+                "MOBILE_BANKING",
+                "CONNECT_IPS",
+                "SCT",
+            ],
+            "eventHandler": {
+                onSuccess(payload) {
+                    // hit merchant api for initiating verfication
+                    console.log(payload);
+                    verifyPayment(payload)
+                },
+                onError(error) {
+                    console.log(error);
+                },
+                onClose() {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function () {
+            // minimum transaction amount must be 10, i.e 1000 in paisa.
+            checkout.show({ amount: 1000 });
+        }
+    </script>
     <!-- cta-area-end -->
 
 </main>
