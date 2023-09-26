@@ -12,7 +12,7 @@ def profile(request):
 
 def product(request):
     category = Category.objects.all()
-    product = Product.objects.filter(vendor_name='Arjun').values()
+    product = Product.objects.filter(vendor_name='sugam').values()
     context = {
         'category': category,
         'product': product,

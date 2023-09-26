@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from cart.cart import Cart
 import requests
+from django.db.models import Q
 
 
 def base(request):
@@ -46,6 +47,19 @@ def Product_Details(request, slug):
     }
 
     return render(request, 'product/product_detail.html', context)
+
+
+def ProductFilter(request, slug):
+    original_string = deslugify(slug)
+    product = Product.objects.filter(
+        Q(main_category__category__subcategory__name=slug) |
+        Q(main_category__category__name=slug) |
+        Q(main_category__name=slug)
+    )
+    context = {
+        'product': product,
+    }
+    return render(request, 'product/product.html', context)
 
 
 def ERROR(request):
@@ -105,6 +119,16 @@ def CONTACT(request):
 
 
 def PRODUCT(request):
+    category = Category.objects.all()
+    product = Product.objects.all()
+    context = {
+        'category': category,
+        'product': product,
+    }
+    return render(request, 'product/product.html', context)
+
+
+def ProductFilter(request):
     category = Category.objects.all()
     product = Product.objects.all()
     context = {

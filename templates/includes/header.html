@@ -182,10 +182,11 @@
                                     <ul>
                                         {% for i in main_category %}
                                         <li>
-                                            <a href="shop.html">{{i.name}}<i class="far fa-angle-down"></i></a>
+                                            <a href="/">{{i.name}}<i class="far fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 {%for cat in i.category_set.all %}
-                                                <li><a href="shop.html">{{cat.name}}</a>
+                                                <li><a
+                                                        href="{% url 'productfilter' slug=cat.name|slugify %}">{{cat.name}}</a>
                                                     <ul class="mega-item">
                                                         {% for sub_cat in cat.sub_category_set.all %}
                                                         <li>

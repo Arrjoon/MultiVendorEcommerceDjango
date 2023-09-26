@@ -4,8 +4,6 @@ from ckeditor.fields import CKEditorWidget
 
 
 class Add_Product_Form(forms.ModelForm):
-    vendor_name = forms.CharField(
-        max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'id_vendor'}), required=True, help_text="Vendor name must be same ",)
     total_quantity = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control'}))
     Categories = forms.ModelChoiceField(queryset=Category.objects.all(
@@ -17,6 +15,7 @@ class Add_Product_Form(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
+            'vendor_name': forms.Select(attrs={'class': 'form-control'}),
             'Availability': forms.TextInput(attrs={'class': 'form-control'}),
             'featured_image': forms.TextInput(attrs={'class': 'form-control'}),
             'product_name': forms.TextInput(attrs={'class': 'form-control'}),

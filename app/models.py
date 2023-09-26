@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
 class Vendor(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, primary_key=True)
-    name = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=100)
     age = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=100, null=True)
 
@@ -89,7 +89,7 @@ class Section(models.Model):
 
 
 class Product(models.Model):
-    vendor_name = models.CharField(max_length=100)
+    vendor_name = models.ForeignKey(Vendor, on_delete=models.CASCADE)
     total_quantity = models.IntegerField()
     Availability = models.IntegerField(null=True)
     featured_image = models.CharField(max_length=100)

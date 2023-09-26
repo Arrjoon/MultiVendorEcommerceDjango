@@ -20,12 +20,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('product_filter/<slug:slug>',
+         views.ProductFilter, name='productfilter'),
+
+
+
+
     path('admin/', admin.site.urls),
     path('base/', views.base, name='base'),
     path('', views.home, name='home'),
     path('about/', views.ABOUT, name='about'),
     path('contact/', views.CONTACT, name='contact'),
     path('product/', views.PRODUCT, name='product'),
+    # path('product/<slug:data>', views.PRODUCT, name='product'),
     path('product/<slug:slug>', views.Product_Details, name='product_detail'),
     path('404', views.ERROR, name='error'),
     # path('account/Register', views.MyAccount, name='account'),
